@@ -18,4 +18,4 @@ class Conexao:
             return conexao, cursor
         except Exception as erro:
             print(f"ERRO: {erro}")
-            return None, None #
+            return None, None #1111111111
