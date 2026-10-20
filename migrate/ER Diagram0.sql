@@ -1,7 +1,7 @@
-create database zezinho_financas;
+create database if not exists zezinho_financas;
 
 CREATE TABLE if not exists tb_usuarios (
- login VARCHAR(100) NOT NULL,
+ login VARCHAR(100) IF NOT NULL PRIMARY KEY AUTO_INCREMENT,
  senha VARCHAR(10) NOT NULL
 );
 
