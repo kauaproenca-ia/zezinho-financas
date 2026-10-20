@@ -19,7 +19,7 @@ class Usuario:
                         """,
                         [login, senha])
             
-            co.commit()
+            co.commit() #
             co.close()
 
             return True
