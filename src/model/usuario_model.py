@@ -18,6 +18,7 @@ class Usuario:
                         VALUES (%s, %s)
                         """,
                         [login, senha])
+            
             co.commit()
             co.close()
 
@@ -28,4 +29,23 @@ class Usuario:
             print(f"ERRO AO INSERIR: {erro}")
             return False
 
+    @staticmethod
+    def verificar(login:str, senha:str) -> dict:
+        co, cu = Conexao().conectar()
     
+        if not co:
+            print("ERRO AO TENTAR CONECTAR")
+            return None
+
+        cu.execute("""
+                    SELECT usuario, senha FROM tb_usuarios
+                    WHERE usuario = %s
+                    AND senha = %s;
+                    """,
+                    [login, senha])
+        
+        resultado = cu.fetchone()
+
+        co.close()
+
+        return resultado
