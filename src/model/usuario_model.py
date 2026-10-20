@@ -7,6 +7,11 @@ class Usuario:
     @staticmethod
     def cadastrar(login:str, senha:str) -> bool:
         co, cu = Conexao().conectar()
+
+        if not co:
+            print("ERRO AO TENTAR CONECTAR")
+            return False
+
         cu.execute("""
                     INSERT INTO tb_usuarios (usuario, senha)
                     VALUES (%s, %s)

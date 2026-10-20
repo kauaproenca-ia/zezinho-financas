@@ -1,38 +1,35 @@
 create database if not exists zezinho_financas;
 
-CREATE TABLE if not exists tb_usuarios (
- login VARCHAR(100) IF NOT NULL PRIMARY KEY AUTO_INCREMENT,
- senha VARCHAR(10) NOT NULL
+CREATE TABLE tb_usuarios (
+ login VARCHAR(50) NOT NULL,
+ senha VARCHAR(200)
 );
 
 ALTER TABLE tb_usuarios ADD CONSTRAINT PK_tb_usuarios PRIMARY KEY (login);
 
 
-CREATE TABLE if not exists tb_categorias (
- id_categoria smallint not null,
- nome VARCHAR(1000),
- login VARCHAR(100)
+CREATE TABLE tb_categorias (
+ id_categoria SMALLINT NOT NULL,
+ nome_categoria VARCHAR(50),
+ login VARCHAR(50)
 );
 
 ALTER TABLE tb_categorias ADD CONSTRAINT PK_tb_categorias PRIMARY KEY (id_categoria);
 
 
-CREATE TABLE if not exists tb_despesas (
- id_despesa int,
- id_categoria_0 smallint ,
- dt_cadastro DATETIME,
- valor DECIMAL(10, 2),
- descricao VARCHAR(1000),
- id_categoria smallint(10),
- login VARCHAR(100)
+CREATE TABLE tb_despesas (
+ id_despesa SMALLINT NOT NULL,
+ valor DECIMAL(7,2),
+ dt_cadastro DATE,
+ id_categoria SMALLINT,
+ login VARCHAR(50)
 );
 
-ALTER TABLE tb_despesas ADD CONSTRAINT PK_tb_despesas PRIMARY KEY (id_despesa,id_categoria_0);
+ALTER TABLE tb_despesas ADD CONSTRAINT PK_tb_despesas PRIMARY KEY (id_despesa);
 
 
-ALTER TABLE tb_categorias ADD CONSTRAINT FK_tb_categorias_0 FOREIGN KEY (login_0) REFERENCES tb_usuarios (login);
+ALTER TABLE tb_categorias ADD CONSTRAINT FK_tb_categorias_0 FOREIGN KEY (login) REFERENCES tb_usuarios (login);
 
 
-ALTER TABLE tb_despesas ADD CONSTRAINT FK_tb_despesas_0 FOREIGN KEY (id_categoria_0) REFERENCES tb_categorias (id_categoria);
-
-
+ALTER TABLE tb_despesas ADD CONSTRAINT FK_tb_despesas_0 FOREIGN KEY (id_categoria) REFERENCES tb_categorias (id_categoria);
+ALTER TABLE tb_despesas ADD CONSTRAINT FK_tb_despesas_1 FOREIGN KEY (login) REFERENCES tb_usuarios (login);
