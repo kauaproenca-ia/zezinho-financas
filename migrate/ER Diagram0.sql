@@ -9,7 +9,7 @@ ALTER TABLE tb_usuarios ADD CONSTRAINT PK_tb_usuarios PRIMARY KEY (login);
 
 
 CREATE TABLE tb_categorias (
- id_categoria SMALLINT NOT NULL,
+ id_categoria INT NOT NULL AUTO_INCREMENT,
  nome_categoria VARCHAR(50),
  login VARCHAR(50)
 );
