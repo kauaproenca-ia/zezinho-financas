@@ -12,3 +12,7 @@ class Usuario:
                     VALUES (%s, %s)
                     """,
                     [login, senha])
+        co.commit()
+        co.close()
+
+        return True
