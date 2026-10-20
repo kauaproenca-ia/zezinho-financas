@@ -13,9 +13,9 @@ class Conexao:
                                             user="root",
                                             password="root",
                                             database="zezinho_financas")
-            cursor = conexao.cursor()
+            cursor = conexao.cursor(dictionary=True)
 
             return conexao, cursor
         except Exception as erro:
             print(f"ERRO: {erro}")
-            return None, None #11111111111
+            return None, None #11111111111  
