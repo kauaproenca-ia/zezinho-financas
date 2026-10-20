@@ -2,7 +2,7 @@ create database if not exists zezinho_financas;
 
 CREATE TABLE tb_usuarios (
  login VARCHAR(50) NOT NULL,
- senha VARCHAR(200)
+ senha VARCHAR(200) NOT NULL
 );
 
 ALTER TABLE tb_usuarios ADD CONSTRAINT PK_tb_usuarios PRIMARY KEY (login);
