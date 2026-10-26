@@ -53,3 +53,26 @@ class Categoria:
         except Exception as e:
             print(f"Erro ao excluir: {e}")
             return False
+
+    @staticmethod
+    def recuperar(login:int) -> list:
+        co, cu = Conexao().conectar()
+    
+        if not co:
+            print("Erro ao conectar.")
+            return None
+
+        try:
+            cu.execute("""
+                        SELECT id_categoria, login, nome_categoria
+                        FROM tb_categorias
+                        WHERE login = %s;
+                        """ [login])
+            
+            categorias = cu.fetchall()
+            co.close()
+            return categorias
+
+        except Exception as e:
+            print(f"Erro ao recuperar dados: {e}")
+            return None
