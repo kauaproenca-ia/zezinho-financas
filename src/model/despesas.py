@@ -29,7 +29,7 @@ class Despesa:
             return None
         
     @staticmethod
-    def recuperar(login:int) -> list:
+    def recuperar_todos(login:int) -> list:
         co, cu = Conexao().conectar()
     
         if not co:
@@ -38,15 +38,92 @@ class Despesa:
 
         try:
             cu.execute("""
-                        SELECT id_categoria, login, nome_categoria
-                        FROM tb_categorias
+                        SELECT id_despesa, login, valor, data_despesa, descricao, id_categoria
+                        FROM tb_despesas
                         WHERE login = %s;
                         """ [login])
             
-            categorias = cu.fetchall()
+            despesas = cu.fetchall()
             co.close()
-            return categorias
+            return despesas
 
         except Exception as erro:
             print(f"Erro ao recuperar dados: {erro}")
             return None
+        
+    @staticmethod
+    def recuperar_todos(login:int, id_categoria:int) -> list:
+        co, cu = Conexao().conectar()
+    
+        if not co:
+            print("Erro ao conectar.")
+            return None
+
+        try:
+            cu.execute("""
+                        SELECT id_despesa, login, valor, data_despesa, descricao, id_categoria
+                        FROM tb_despesas
+                        WHERE login = %s;
+                        AND id_categoria = %s;
+                        """ [login, id_categoria])
+            
+            despesas = cu.fetchall()
+            co.close()
+            return despesas
+
+        except Exception as erro:
+            print(f"Erro ao recuperar dados: {erro}")
+            return None
+        
+    @staticmethod
+    def excluir(id_despesa:int) -> bool:
+        co, cu = Conexao().conectar()
+
+        if not co:
+            print("Erro ao conectar")
+            return False
+
+        try:
+            cu.execute("""
+                        DELETE FROM tb_despesa
+                        WHERE id_despesa = %s;
+                        """, 
+                        [id_despesa])
+
+            co.commit()
+            co.close()
+            return True
+
+        except Exception as erro:
+            print(f"Erro ao excluir: {erro}")
+            return False
+        
+    @staticmethod
+    def alterar(id_despesa:int, login:int, id_categoria:int, data:str, descricao:str, valor:int) -> bool:
+        co, cu = Conexao().conectar()
+
+        if co == None:
+            print("Erro ao conectar.")
+            return False
+
+        try:
+            cu.execute("""
+                        UPDATE tb_despesas SET
+                            id_categoria = %s,
+                            descricao = %s,
+                            valor = %s,
+                            data_despesa = %s
+                        WHERE
+                            id_despesa = %s
+                            AND id_usuario = %s;
+                        """,
+                        [id_categoria, descricao, valor, data, id_despesa, login])  
+
+            co.commit()
+            co.close()
+            
+            return True
+
+        except Exception as e:
+            print(f"Erro ao inserir: {e}")
+            return False
