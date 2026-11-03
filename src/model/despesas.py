@@ -51,29 +51,7 @@ class Despesa:
             print(f"Erro ao recuperar dados: {erro}")
             return None
         
-    @staticmethod
-    def recuperar_todos(login:int, id_categoria:int) -> list:
-        co, cu = Conexao().conectar()
-    
-        if not co:
-            print("Erro ao conectar.")
-            return None
 
-        try:
-            cu.execute("""
-                        SELECT id_despesa, login, valor, data_despesa, descricao, id_categoria
-                        FROM tb_despesas
-                        WHERE login = %s;
-                        AND id_categoria = %s;
-                        """ [login, id_categoria])
-            
-            despesas = cu.fetchall()
-            co.close()
-            return despesas
-
-        except Exception as erro:
-            print(f"Erro ao recuperar dados: {erro}")
-            return None
         
     @staticmethod
     def excluir(id_despesa:int) -> bool:
