@@ -5,6 +5,9 @@ class CadastroUsuarioView(ft.View):
     def __init__(self, pagina:ft.Page):
         super().__init__()
 
+        self.pagina = pagina
+        self.route = "/cadastro"
+
         self.bgcolor = "#000000"
         self.vertical_alignment = "CENTER"
         self.horizontal_alignment = "CENTER"
@@ -37,4 +40,16 @@ class CadastroUsuarioView(ft.View):
         senha = self.campo_senha.value
         Usuario().cadastrar(usuario,senha)
 
-        if Usuario().cadastrar(usuario,senha) :
+        if usuario == "" or senha == "":
+            self.pagina.show_dialog(ft.SnackBar(content="Preencha todos os campos!", bgcolor="#babaca"))
+            return
+
+        resultado = Usuario().cadastrar(usuario,senha)
+
+        if resultado == True:
+            #SNACKBAR MOSTRANDO QUE DEU CERTO
+            self.pagina.show_dialog(ft.SnackBar(content="Cadastro efetuado com sucesso!", bgcolor="#21CA21"))
+
+        else:
+            self.pagina.show_dialog(ft.SnackBar(content="Erro ao cadastrar. Entre em contato com o administrador", bgcolor="#FF0000"))
+
