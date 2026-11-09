@@ -1,5 +1,5 @@
 import flet as ft
-from src.model.usuario_model import Usuario
+from src.model.usuario import Usuario
 
 class CadastroUsuarioView(ft.View):
     def __init__(self, pagina:ft.Page):
@@ -22,7 +22,7 @@ class CadastroUsuarioView(ft.View):
                                    can_reveal_password=True,
                                    bgcolor="#ffffff")
         
-        botao_cadastrar = ft.Button(content="CADASTRAR",
+        botao_cadastrar = ft.Button(content="Cadastrar",
                                     width=250,
                                     on_click=self.cadastrar)
         

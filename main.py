@@ -7,7 +7,7 @@ def main(pagina:ft.Page):
     tela_login_usuario = LoginUsuarioView(pagina)
 
     def roteamento(e=None):
-        pagina.view.clear()
+        pagina.views.clear()
 
         if pagina.route == "/cadastro":
             pagina.views.append(tela_cadastro_usuario)
