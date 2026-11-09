@@ -59,7 +59,7 @@ class LoginUsuarioView(ft.View):
  
     async def ir_para_login(self):
         await self.pagina.push_route("/cadastro")
-        
+
     def logar(self):
             usuario = self.campo_usuario.value
             senha = self.campo_senha.value
@@ -68,6 +68,5 @@ class LoginUsuarioView(ft.View):
     
             if resultado:
                 self.pagina.show_dialog(ft.SnackBar(content="Logar efetuado com sucesso!", bgcolor="#21CA21"))
-    
             else:
                 self.pagina.show_dialog(ft.SnackBar(content="Erro ao logar. Entre em contato com o administrador", bgcolor="#FF0000"))
