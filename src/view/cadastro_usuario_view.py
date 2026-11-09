@@ -27,7 +27,8 @@ class CadastroUsuarioView(ft.View):
                                     on_click=self.cadastrar)
         
         botao_voltar = ft.Button(content="Volte para o login",
-                                 width=250)
+                                 width=250,
+                                 on_click=self.ir_para_login)
         
         self.controls = [titulo,
                          self.campo_usuario,
@@ -53,3 +54,5 @@ class CadastroUsuarioView(ft.View):
         else:
             self.pagina.show_dialog(ft.SnackBar(content="Erro ao cadastrar. Entre em contato com o administrador", bgcolor="#FF0000"))
 
+    async def ir_para_login(self):
+        await self.pagina.push_route("/login")
