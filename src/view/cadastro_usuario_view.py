@@ -7,7 +7,7 @@ class CadastroUsuarioView(ft.View):
 
         self.pagina = pagina
         self.route = "/cadastro"
-
+        self.title = "Zezinho Finanças"
         self.bgcolor = "#000000"
         self.vertical_alignment = "CENTER"
         self.horizontal_alignment = "CENTER"
@@ -15,8 +15,10 @@ class CadastroUsuarioView(ft.View):
         titulo = ft.Text(value="Cadastro de usuário",
                          size=20,
                          color="#ffffff")
-        self.campo_usuario = ft.TextField(label="Usuário",
+        
+        self.login = ft.TextField(label="Login",
                                      bgcolor="#ffffff")
+        
         self.campo_senha = ft.TextField(label="Senha",
                                    password=True,
                                    can_reveal_password=True,
@@ -31,13 +33,13 @@ class CadastroUsuarioView(ft.View):
                                  on_click=self.ir_para_login)
         
         self.controls = [titulo,
-                         self.campo_usuario,
+                         self.login,
                          self.campo_senha,
                          botao_cadastrar,
                          botao_voltar]
                 
     def cadastrar(self):
-        usuario = self.campo_usuario.value
+        usuario = self.login.value
         senha = self.campo_senha.value
         Usuario().cadastrar(usuario,senha)
 
