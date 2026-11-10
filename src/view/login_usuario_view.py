@@ -16,6 +16,13 @@ class LoginUsuarioView(ft.View):
         self.width = 750
         self.height = 750
 
+        logo = ft.Image(
+        src="logo.jpg",
+        width=250,
+        height=250,
+        
+    )
+
         titulo = ft.Text(value="Acesse a sua conta!",
                          size=20,
                          color="#ffffff")
@@ -36,7 +43,8 @@ class LoginUsuarioView(ft.View):
                                  width=250,
                                  on_click=self.ir_para_cadastro)
         
-        self.controls = [titulo,
+        self.controls = [logo,
+                         titulo,
                          self.campo_login,
                          self.campo_senha,
                          botao_entrar,

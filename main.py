@@ -5,7 +5,7 @@ from src.view.cadastro_categoria_view import CadastroCategoriaView
 from src.view.tela_principal_view import PrincipalView
 
 def main(pagina: ft.Page):
-    pagina.title = "                                                                                                                                                                                       Zezinho Finanças"
+    pagina.title = "Zezinho Finanças"
 
     def navegacao(e):
         item_clicado = e.control.selected_index
@@ -59,4 +59,4 @@ def main(pagina: ft.Page):
     
     pagina.navigate("/login")
 
-ft.run(main)
+ft.run(main, assets_dir="assets")
