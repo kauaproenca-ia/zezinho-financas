@@ -15,7 +15,7 @@ class PrincipalView(ft.View):
         self.vertical_alignment = "center"
         self.horizontal_alignment = "center"
 
-        titulo = ft.Text(value=f"Seja Bem-vindo(a), {nome_usuario}", size=20, color="#ffffff")
+        titulo = ft.Text(value=f"Seja Bem-vindo(a), {nome_usuario} !", size=20, color="#ffffff")
 
         self.route = "/principal"
 

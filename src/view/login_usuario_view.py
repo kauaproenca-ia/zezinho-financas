@@ -56,5 +56,5 @@ class LoginUsuarioView(ft.View):
             else:
                 self.pagina.show_dialog(ft.SnackBar(content="Erro ao logar. Entre em contato com o administrador", bgcolor="#FF0000"))
 
-    async def ir_para_cadastro(self, e):
-        await self.pagina.push_route("/cadastro")
+    def ir_para_cadastro(self, e):
+        self.pagina.navigate("/cadastro")

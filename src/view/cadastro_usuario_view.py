@@ -55,4 +55,4 @@ class CadastroUsuarioView(ft.View):
             self.pagina.show_dialog(ft.SnackBar(content="Erro ao cadastrar. Entre em contato com o administrador", bgcolor="#FF0000"))
 
     def ir_para_login(self):
-        self.pagina.go("/login")
+        self.pagina.navigate("/login")
