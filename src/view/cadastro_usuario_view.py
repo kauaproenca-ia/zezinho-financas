@@ -12,6 +12,13 @@ class CadastroUsuarioView(ft.View):
         self.vertical_alignment = "CENTER"
         self.horizontal_alignment = "CENTER"
 
+        logo = ft.Image(
+        src="logo.jpg",
+        width=250,
+        height=250,
+        
+    )
+
         titulo = ft.Text(value="Cadastro de usuário",
                          size=20,
                          color="#ffffff")
@@ -32,7 +39,8 @@ class CadastroUsuarioView(ft.View):
                                  width=250,
                                  on_click=self.ir_para_login)
         
-        self.controls = [titulo,
+        self.controls = [logo,
+                         titulo,
                          self.login,
                          self.campo_senha,
                          botao_cadastrar,
@@ -55,4 +63,4 @@ class CadastroUsuarioView(ft.View):
             self.pagina.show_dialog(ft.SnackBar(content="Erro ao cadastrar. Entre em contato com o administrador", bgcolor="#FF0000"))
 
     def ir_para_login(self):
-        self.pagina.go("/login")
+        self.pagina.navigate("/login")

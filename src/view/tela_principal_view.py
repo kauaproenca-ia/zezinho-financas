@@ -4,6 +4,13 @@ class PrincipalView(ft.View):
     def __init__(self, pagina:ft.Page):
         super().__init__()
 
+        logo = ft.Image(
+        src="logo2.png",
+        width=200,
+        height=200,
+        
+    )
+
         self.pagina = pagina
 
         self.route = "/principal"
@@ -15,8 +22,11 @@ class PrincipalView(ft.View):
         self.vertical_alignment = "center"
         self.horizontal_alignment = "center"
 
-        titulo = ft.Text(value=f"Seja Bem-vindo(a), {nome_usuario}", size=20, color="#ffffff")
+        titulo = ft.Text(value=f"Seja Bem-vindo(a), {nome_usuario}! \n O que você gostaria de fazer hoje?", 
+                         size=20, 
+                         color="#ffffff", 
+                         text_align=ft.TextAlign.CENTER)
 
         self.route = "/principal"
 
-        self.controls = [titulo]
+        self.controls = [logo, titulo]
