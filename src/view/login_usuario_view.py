@@ -62,7 +62,7 @@ class LoginUsuarioView(ft.View):
                 self.pagina.session.store.set("usuario_logado", resultado)
                 self.pagina.navigate("/principal")
             else:
-                self.pagina.show_dialog(ft.SnackBar(content="Erro ao logar. Entre em contato com o administrador", bgcolor="#FF0000"))
+                self.pagina.show_dialog(ft.SnackBar(content="Erro ao efetuar login. Usuário ou senha incorretos!", bgcolor="#FF0000"))
 
     def ir_para_cadastro(self, e):
         self.pagina.navigate("/cadastro")
