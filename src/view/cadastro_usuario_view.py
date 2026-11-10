@@ -41,8 +41,6 @@ class CadastroUsuarioView(ft.View):
     def cadastrar(self):
         usuario = self.login.value
         senha = self.campo_senha.value
-        Usuario().cadastrar(usuario,senha)
-
         if usuario == "" or senha == "":
             self.pagina.show_dialog(ft.SnackBar(content="Preencha todos os campos!", bgcolor="#babaca"))
             return
@@ -56,5 +54,5 @@ class CadastroUsuarioView(ft.View):
         else:
             self.pagina.show_dialog(ft.SnackBar(content="Erro ao cadastrar. Entre em contato com o administrador", bgcolor="#FF0000"))
 
-    async def ir_para_login(self):
-        await self.pagina.push_route("/login")
+    def ir_para_login(self):
+        self.pagina.go("/login")
