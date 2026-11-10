@@ -14,7 +14,7 @@ class Usuario:
         
         try:
             cu.execute("""
-                        INSERT INTO tb_usuarios (usuario, senha)
+                        INSERT INTO tb_usuarios (login, senha)
                         VALUES (%s, %s)
                         """,
                         [login, senha])
@@ -38,8 +38,8 @@ class Usuario:
             return None
 
         cu.execute("""
-                    SELECT usuario, senha FROM tb_usuarios
-                    WHERE usuario = %s
+                    SELECT login, senha FROM tb_usuarios
+                    WHERE login = %s
                     AND senha = %s;
                     """,
                     [login, senha])

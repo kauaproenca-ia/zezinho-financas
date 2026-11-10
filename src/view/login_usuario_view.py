@@ -9,15 +9,18 @@ class LoginUsuarioView(ft.View):
         self.pagina = pagina
         self.route = "/login"
 
+        self.title = "                                                                                                                                                                                       Zezinho Finanças"
         self.bgcolor = "#000000"
         self.vertical_alignment = "CENTER"
         self.horizontal_alignment = "CENTER"
+        self.width = 750
+        self.height = 750
 
-        titulo = ft.Text(value="Login",
+        titulo = ft.Text(value="Acesse a sua conta!",
                          size=20,
                          color="#ffffff")
         
-        self.campo_usuario = ft.TextField(label="Usuário",
+        self.campo_login = ft.TextField(label="Login",
                                      bgcolor="#ffffff")
         
         self.campo_senha = ft.TextField(label="Senha",
@@ -25,48 +28,33 @@ class LoginUsuarioView(ft.View):
                                    can_reveal_password=True,
                                    bgcolor="#ffffff")
         
-        botao_logar = ft.Button(content="Logar",
+        botao_entrar = ft.Button(content="Entrar",
                                     width=250,
-                                    on_click=self.cadastrar)
+                                    on_click=self.entrar)
         
-        botao_voltar = ft.Button(content="Cadastre-se",
+        botao_cadastro = ft.Button(content="Cadastre-se",
                                  width=250,
                                  on_click=self.ir_para_cadastro)
         
         self.controls = [titulo,
-                         self.campo_usuario,
+                         self.campo_login,
                          self.campo_senha,
-                         botao_logar,
-                         botao_voltar]
-        
-    def cadastrar(self):
-            usuario = self.campo_usuario.value
-            senha = self.campo_senha.value
-            Usuario().cadastrar(usuario,senha)
-    
-            if usuario == "" or senha == "":
-                self.pagina.show_dialog(ft.SnackBar(content="Preencha todos os campos!", bgcolor="#babaca"))
-                return
-    
-            resultado = Usuario().cadastrar(usuario,senha)
-    
-            if resultado == True:
-                #SNACKBAR MOSTRANDO QUE DEU CERTO
-                self.pagina.show_dialog(ft.SnackBar(content="Cadastro efetuado com sucesso!", bgcolor="#21CA21"))
-    
-            else:
-                self.pagina.show_dialog(ft.SnackBar(content="Erro ao cadastrar. Entre em contato com o administrador", bgcolor="#FF0000"))
+                         botao_entrar,
+                         botao_cadastro]
  
-    async def ir_para_login(self):
-        await self.pagina.push_route("/cadastro")
 
-    def logar(self):
-            usuario = self.campo_usuario.value
+    async def entrar(self, e):
+            usuario = self.campo_login.value
             senha = self.campo_senha.value
     
             resultado = Usuario().verificar(usuario,senha)
     
             if resultado:
-                self.pagina.show_dialog(ft.SnackBar(content="Logar efetuado com sucesso!", bgcolor="#21CA21"))
+                self.pagina.show_dialog(ft.SnackBar(content="Login efetuado com sucesso!", bgcolor="#21CA21"))
+                self.pagina.session.store.set("usuario_logado", resultado)
+                self.pagina.navigate("/principal")
             else:
                 self.pagina.show_dialog(ft.SnackBar(content="Erro ao logar. Entre em contato com o administrador", bgcolor="#FF0000"))
+
+    async def ir_para_cadastro(self, e):
+        await self.pagina.push_route("/cadastro")

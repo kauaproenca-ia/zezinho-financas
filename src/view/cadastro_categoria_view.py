@@ -4,5 +4,3 @@ class CadastroCategoriaView(ft.View):
         super().__init__()
 
         self.pagina = pagina
-
-        
