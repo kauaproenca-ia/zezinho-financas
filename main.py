@@ -2,9 +2,10 @@ import flet as ft
 from src.view.cadastro_usuario_view import CadastroUsuarioView
 from src.view.login_usuario_view import LoginUsuarioView
 from src.view.cadastro_categoria_view import CadastroCategoriaView
+from src.view.tela_principal_view import PrincipalView
 
 def main(pagina: ft.Page):
-    pagina.title = "Zezinho Finanças"
+    pagina.title = "                                                                                                                                                                                       Zezinho Finanças"
 
     def navegacao(e):
         item_clicado = e.control.selected_index
@@ -35,26 +36,26 @@ def main(pagina: ft.Page):
         pagina.views.clear()
 
         if pagina.route == "/cadastro":
-            pagina.views.append(CadastroUsuarioView(pagina))
+            tela_cadastro_usuario = CadastroUsuarioView(pagina)
+            pagina.views.append(tela_cadastro_usuario)
 
         elif pagina.route == "/login":
-            view = LoginUsuarioView(pagina)
-            view.navigation_bar = barra_navegacao
-            pagina.views.append(view)
+            tela_login_usuario = LoginUsuarioView(pagina)
+            pagina.views.append(tela_login_usuario)
 
         elif pagina.route == "/cadastrocategoria":
-            view = CadastroCategoriaView(pagina)
-            view.navigation_bar = barra_navegacao
-            pagina.views.append(view)
+            tela_cadastro_categoria = CadastroCategoriaView(pagina)
+            pagina.views.append(tela_cadastro_categoria)
 
-        else:
-            view = LoginUsuarioView(pagina)
-            view.navigation_bar = barra_navegacao
-            pagina.views.append(view)
-
+        elif pagina.route == "/principal":
+            tela_principal = PrincipalView(pagina)
+            tela_principal.navigation_bar = barra_navegacao
+            pagina.views.append(tela_principal)
+        
         pagina.update()
 
     pagina.on_route_change = roteamento
+    roteamento()
     
     pagina.navigate("/login")
 

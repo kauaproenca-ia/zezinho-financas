@@ -9,7 +9,7 @@ class LoginUsuarioView(ft.View):
         self.pagina = pagina
         self.route = "/login"
 
-        self.title = "Zezinho Finanças"
+        self.title = "                                                                                                                                                                                       Zezinho Finanças"
         self.bgcolor = "#000000"
         self.vertical_alignment = "CENTER"
         self.horizontal_alignment = "CENTER"
@@ -51,7 +51,8 @@ class LoginUsuarioView(ft.View):
     
             if resultado:
                 self.pagina.show_dialog(ft.SnackBar(content="Login efetuado com sucesso!", bgcolor="#21CA21"))
-                self.pagina.navigate("/inicio")
+                self.pagina.session.store.set("usuario_logado", resultado)
+                self.pagina.navigate("/principal")
             else:
                 self.pagina.show_dialog(ft.SnackBar(content="Erro ao logar. Entre em contato com o administrador", bgcolor="#FF0000"))
 

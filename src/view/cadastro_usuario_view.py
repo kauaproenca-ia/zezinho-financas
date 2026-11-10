@@ -7,7 +7,7 @@ class CadastroUsuarioView(ft.View):
 
         self.pagina = pagina
         self.route = "/cadastro"
-        self.title = "Zezinho Finanças"
+        self.title = "                                                                                                                                                                                       Zezinho Finanças"
         self.bgcolor = "#000000"
         self.vertical_alignment = "CENTER"
         self.horizontal_alignment = "CENTER"
