@@ -60,7 +60,7 @@ class CadastroUsuarioView(ft.View):
             self.pagina.show_dialog(ft.SnackBar(content="Cadastro efetuado com sucesso!", bgcolor="#21CA21"))
 
         else:
-            self.pagina.show_dialog(ft.SnackBar(content="Erro ao cadastrar. Entre em contato com o administrador", bgcolor="#FF0000"))
+            self.pagina.show_dialog(ft.SnackBar(content="Usuário com esse nome já existente. Escolha outro nome para dar continuidade ao seu cadastro!", bgcolor="#FF0000"))
 
     def ir_para_login(self):
         self.pagina.navigate("/login")
