@@ -36,12 +36,16 @@ class LoginUsuarioView(ft.View):
                                    bgcolor="#ffffff")
         
         botao_entrar = ft.Button(content="Entrar",
-                                    width=250,
-                                    on_click=self.entrar)
+                                    width=305,
+                                    on_click=self.entrar,
+                                    bgcolor="#089c39",
+                                    color="#ffffff")
         
-        botao_cadastro = ft.Button(content="Cadastre-se",
-                                 width=250,
-                                 on_click=self.ir_para_cadastro)
+        botao_cadastro = ft.Button(content="Ainda não tem uma conta? Cadastre-se!",
+                                 width=305,
+                                 on_click=self.ir_para_cadastro,
+                                 bgcolor="#0936ff",
+                                 color="#ffffff")
         
         self.controls = [logo,
                          titulo,
