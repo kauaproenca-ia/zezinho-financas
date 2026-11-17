@@ -14,7 +14,7 @@ class Despesa:
         
         try:
             cu.execute("""
-                        INSERT INTO tb_despesas (login, valor, data_despesa, descricao, id_categoria)
+                        INSERT INTO tb_despesas (id_usuario, valor, data_despesa, descricao, id_categoria)
                         VALUES (%s, %s, %s, %s, %s);
                         """
                         , [login, valor, data, descricao, id_categoria])
@@ -38,7 +38,7 @@ class Despesa:
 
         try:
             cu.execute("""
-                        SELECT id_despesa, login, valor, data_despesa, descricao, id_categoria
+                        SELECT id_despesa, id_usuario, valor, data_despesa, descricao, id_categoria
                         FROM tb_despesas
                         WHERE login = %s;
                         """ [login])
@@ -63,7 +63,7 @@ class Despesa:
 
         try:
             cu.execute("""
-                        DELETE FROM tb_despesa
+                        DELETE FROM tb_despesas
                         WHERE id_despesa = %s;
                         """, 
                         [id_despesa])

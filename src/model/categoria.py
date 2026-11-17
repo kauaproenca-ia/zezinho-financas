@@ -15,7 +15,7 @@ class Categoria:
         try:
             cu.execute("""
                         INSERT INTO tb_categorias
-                        (categoria, login)
+                        (nome_categoria, id_usuario)
                         VALUES (%s, %s);
                         """,
                         [categoria, login])  
@@ -64,10 +64,10 @@ class Categoria:
 
         try:
             cu.execute("""
-                        SELECT id_categoria, login, nome_categoria
+                        SELECT id_categoria, id_usuario, nome_categoria
                         FROM tb_categorias
                         WHERE login = %s;
-                        """ [login])
+                        """ ,[login])
             
             categorias = cu.fetchall()
             co.close()

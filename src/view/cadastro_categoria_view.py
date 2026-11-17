@@ -68,4 +68,4 @@ class CadastroCategoriaView(ft.View):
             texto = ft.Text(value=nome_categoria)
             self.lista_categorias.append(texto)
 
-            self.pagina.update()
+        self.pagina.update()
