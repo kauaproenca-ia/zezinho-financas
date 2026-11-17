@@ -11,7 +11,7 @@ class CadastroCategoriaView(ft.View):
         self.horizontal_alignment = "center"
 
         dados_usuario = pagina.session.store.get("usuario_logado")
-        self.id_usuario = dados_usuario.get("id_usuario")
+        self.id_usuario = dados_usuario.get("login")
 
         titulo = ft.Text(value="Inclua a sua nova categoria!",
                          color="#ffffff",
@@ -34,9 +34,18 @@ class CadastroCategoriaView(ft.View):
             alignment=ft.MainAxisAlignment.CENTER,
             spacing=30
                                                     )
+
+        self.lista_categorias = []
+        coluna_lista_categorias = ft.Column(controls=self.lista_categorias)
+        titulo_lista = ft.Text(value="Categorias cadastradas",
+                               color="#ffffff")
+
+        self.atualizar_lista_categorias()
         
         self.controls = [titulo,
-                         linha]
+                         linha,
+                         titulo_lista,
+                         coluna_lista_categorias]
 
     def cadastrar_categoria(self):
         nome_categoria = self.campo_nome_categoria.value
@@ -47,4 +56,16 @@ class CadastroCategoriaView(ft.View):
             self.pagina.show_dialog(ft.SnackBar(content="Cadastro efetuado com sucesso!", bgcolor="#21CA21"))
 
         else:
-            self.pagina.show_dialog(ft.SnackBar(content="Erro ao cadastrar", bgcolor="#FF0000"))
+            self.pagina.show_dialog(ft.SnackBar(content="Erro ao incluir", bgcolor="#FF0000"))
+
+        self.atualizar_lista_categorias()
+
+    def atualizar_lista_categorias(self):
+        categorias = Categoria().recuperar(self.id_usuario)
+
+        for categoria in categorias:
+            nome_categoria = categoria.get("nome_categoria")
+            texto = ft.Text(value=nome_categoria)
+            self.lista_categorias.append(texto)
+
+            self.pagina.update()
