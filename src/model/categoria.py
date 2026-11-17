@@ -14,7 +14,7 @@ class Categoria:
 
         try:
             cu.execute("""
-                        INSERT INTO tb_categoria
+                        INSERT INTO tb_categorias
                         (categoria, login)
                         VALUES (%s, %s);
                         """,
@@ -41,7 +41,7 @@ class Categoria:
 
         try:
             cu.execute("""
-                        DELETE FROM tb_categoria
+                        DELETE FROM tb_categorias
                         WHERE id_categoria = %s;
                         """, 
                         [id_categorias])
