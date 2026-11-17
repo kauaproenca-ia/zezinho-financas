@@ -45,6 +45,7 @@ def main(pagina: ft.Page):
 
         elif pagina.route == "/cadastrocategoria":
             tela_cadastro_categoria = CadastroCategoriaView(pagina)
+            tela_cadastro_categoria.navigation_bar = barra_navegacao
             pagina.views.append(tela_cadastro_categoria)
 
         elif pagina.route == "/principal":
