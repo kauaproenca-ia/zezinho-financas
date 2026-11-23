@@ -10,8 +10,8 @@ class CadastroCategoriaView(ft.View):
         self.vertical_alignment = "center"
         self.horizontal_alignment = "center"
 
-        dados_usuario = pagina.session.store.get("usuario_logado")
-        self.id_usuario = dados_usuario.get("login")
+        self.dados_usuario = pagina.session.store.get("usuario_logado")
+        #self.id_usuario = self.dados_usuario.get("login")
 
         titulo = ft.Text(value="Inclua a sua nova categoria!",
                          color="#ffffff",
@@ -40,17 +40,18 @@ class CadastroCategoriaView(ft.View):
         titulo_lista = ft.Text(value="Categorias cadastradas",
                                color="#ffffff")
 
-        self.atualizar_lista_categorias()
+        self.route = "/categoriaview"
         
         self.controls = [titulo,
-                         linha,
+                         self.campo_nome_categoria,
+                         botao_cadastrar,
                          titulo_lista,
                          coluna_lista_categorias]
 
     def cadastrar_categoria(self):
         nome_categoria = self.campo_nome_categoria.value
-
-        resultado = Categoria().adicionar(nome_categoria, self.id_usuario)
+        id_usuario = self.dados_usuario.get("id_usuario")
+        resultado = Categoria().adicionar(nome_categoria, id_usuario)
 
         if resultado:
             self.pagina.show_dialog(ft.SnackBar(content="Cadastro efetuado com sucesso!", bgcolor="#21CA21"))
@@ -61,11 +62,25 @@ class CadastroCategoriaView(ft.View):
         self.atualizar_lista_categorias()
 
     def atualizar_lista_categorias(self):
-        categorias = Categoria().recuperar(self.id_usuario)
+        self.lista_categorias.clear()
+        id_usuario = self.dados_usuario.get("id_usuario")
+        categorias = Categoria().recuperar(id_usuario)
 
-        for categoria in categorias:
-            nome_categoria = categoria.get("nome_categoria")
-            texto = ft.Text(value=nome_categoria)
-            self.lista_categorias.append(texto)
+        if categorias:
+            for categoria in categorias:
+                nome_categoria = categoria.get("nome_categoria")
+                texto = ft.Text(value=nome_categoria)
+                linha_categoria = ft.Row(controls=[texto,
+                                               ft.IconButton(icon=ft.Icons.DELETE,
+                                                             key=categoria.get("id_categoria"),
+                                                             on_click=self.excluir_categoria)],
+                                               alignment="center")
+                self.lista_categorias.append(linha_categoria)
 
         self.pagina.update()
+
+    def excluir_categoria(self, e):
+        id_categoria = e.control.key
+        Categoria().excluir(id_categoria)
+
+        self.atualizar_lista_categorias()
