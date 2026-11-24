@@ -38,9 +38,16 @@ class Despesa:
 
         try:
             cu.execute("""
-                        SELECT id_despesa, id_usuario, valor, data_despesa, descricao, id_categoria
-                        FROM tb_despesas
-                        WHERE id_usuario = %s;
+                        select id_despesa, 
+                            tb_despesas.id_usuario, 
+                            valor, 
+                            data_despesa, 
+                            descricao, 
+                            tb_despesas.id_categoria, 
+                            tb_categorias.nome_categoria
+                       from tb_despesas
+                       inner join tb_categorias on tb_categorias.id_categoria = tb_despesas.id_categoria
+                       where tb_despesas.id_usuario = %s;
                         """, [login])
             
             despesas = cu.fetchall()

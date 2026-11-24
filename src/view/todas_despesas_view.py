@@ -31,6 +31,7 @@ class TodasDespesasView(ft.View):
         self.controls = [titulo, tabela_despesas]
 
         def atualizar_lista_despesas(self):
+            self.lista_despesas.clear()
             despesas = Despesa().recuperar_todos(self.id_usuario)
 
             for despesa in despesas:
@@ -46,8 +47,15 @@ class TodasDespesasView(ft.View):
                     ft.DataCell(ft.Text(despesa.get(valor))),
                     ft.DataCell(ft.Text(despesa.get(id_categoria))),
                     ft.DataCell(ft.Text(despesa.get(data_despesa))),
+                    ft.DataCell(ft.IconButton(icon=ft.Icons.DELETE,
+                                              key=id_despesa))
                 ])
 
                 self.lista_despesas.append(linha)
 
             self.pagina.update()
+
+        def excluir_despesa(self, botao):
+            id_despesa = botao.control.key
+            Despesa().excluir(id_despesa)
+            self.atualizar_lista_despesas()
