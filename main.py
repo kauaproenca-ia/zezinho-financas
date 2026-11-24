@@ -4,6 +4,8 @@ from src.view.login_usuario_view import LoginUsuarioView
 from src.view.cadastro_categoria_view import CadastroCategoriaView
 from src.view.tela_principal_view import PrincipalView
 from src.view.cadastro_despesa_view import CadastroDespesaView
+from src.view.todas_despesas_view import TodasDespesasView
+from src.view.despesas_por_categoria_view import DespesasPorCategoriaView
 
 def main(pagina: ft.Page):
     pagina.title = "                                                                                                                                                                                       Zezinho Finanças"
@@ -56,6 +58,16 @@ def main(pagina: ft.Page):
 
         elif pagina.route == "/cadastrodespesa":
             tela_cadastro_despesa = CadastroDespesaView(pagina)
+            tela_cadastro_categoria.navigation_bar = barra_navegacao
+            pagina.views.append(tela_cadastro_despesa)
+
+        elif pagina.route == "/todasdespesas":
+            tela_despesas = TodasDespesasView(pagina)
+            tela_cadastro_categoria.navigation_bar = barra_navegacao
+            pagina.views.append(tela_despesas)
+
+        elif pagina.route == "/despesasporcategoria":
+            tela_cadastro_despesa = DespesasPorCategoriaView(pagina)
             tela_cadastro_categoria.navigation_bar = barra_navegacao
             pagina.views.append(tela_cadastro_despesa)
         
