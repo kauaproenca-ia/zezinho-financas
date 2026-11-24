@@ -16,9 +16,9 @@ def main(pagina: ft.Page):
         elif item_clicado == 1:
             pagina.navigate("/cadastrodespesa")
         elif item_clicado == 2:
-            pagina.navigate("/")
+            pagina.navigate("/todasdespesas")
         elif item_clicado == 3:
-            pagina.navigate("/")
+            pagina.navigate("/despesascategoria")
         elif item_clicado == 4:
             pagina.navigate("/login")
 

@@ -11,7 +11,7 @@ class CadastroCategoriaView(ft.View):
         self.horizontal_alignment = "center"
 
         self.dados_usuario = pagina.session.store.get("usuario_logado")
-        #self.id_usuario = self.dados_usuario.get("login")
+        self.username = self.dados_usuario.get("login")
 
         titulo = ft.Text(value="Inclua a sua nova categoria!",
                          color="#ffffff",
@@ -51,7 +51,7 @@ class CadastroCategoriaView(ft.View):
     def cadastrar_categoria(self):
         nome_categoria = self.campo_nome_categoria.value
         id_usuario = self.dados_usuario.get("id_usuario")
-        resultado = Categoria().adicionar(nome_categoria, id_usuario)
+        resultado = Categoria().adicionar(nome_categoria, self.id_usuario)
 
         if resultado:
             self.pagina.show_dialog(ft.SnackBar(content="Cadastro efetuado com sucesso!", bgcolor="#21CA21"))
@@ -63,8 +63,8 @@ class CadastroCategoriaView(ft.View):
 
     def atualizar_lista_categorias(self):
         self.lista_categorias.clear()
-        id_usuario = self.dados_usuario.get("id_usuario")
-        categorias = Categoria().recuperar(id_usuario)
+        id_usuario = self.id_usuario.get("id_usuario")
+        categorias = Categoria().recuperar(self.id_usuario)
 
         if categorias:
             for categoria in categorias:

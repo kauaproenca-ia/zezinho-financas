@@ -50,7 +50,7 @@ class CadastroUsuarioView(ft.View):
                          botao_cadastrar,
                          botao_voltar]
                 
-    def cadastrar(self):
+    def cadastrar(self, e):
         usuario = self.login.value
         senha = self.campo_senha.value
         if usuario == "" or senha == "":
@@ -66,5 +66,5 @@ class CadastroUsuarioView(ft.View):
         else:
             self.pagina.show_dialog(ft.SnackBar(content="Usuário com esse nome já existente. Escolha outro nome para dar continuidade ao seu cadastro!", bgcolor="#FF0000"))
 
-    def ir_para_login(self):
+    def ir_para_login(self, e):
         self.pagina.navigate("/login")

@@ -66,7 +66,7 @@ class Categoria:
             cu.execute("""
                         SELECT id_categoria, id_usuario, nome_categoria
                         FROM tb_categorias
-                        WHERE login = %s;
+                        WHERE id_usuario = %s;
                         """ ,[login])
             
             categorias = cu.fetchall()

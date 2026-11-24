@@ -12,8 +12,8 @@ class CadastroDespesaView(ft.View):
         self.vertical_alignment = "center"
         self.horizontal_alignment = "center"
 
-        self.dados_usuario = pagina.session.store.get("usuario_logado")
-        #self.id_usuario = self.dados_usuario.get("id_usuario")
+        dados_usuario = pagina.session.store.get("usuario_logado")
+        self.id_usuario = dados_usuario.get("id_usuario")
 
         titulo = ft.Text(value="TELA DE CADASTRO DE DESPESAS",
                          size=20)

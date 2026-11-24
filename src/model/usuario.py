@@ -38,7 +38,7 @@ class Usuario:
             return None
 
         cu.execute("""
-                    SELECT login, senha FROM tb_usuarios
+                    SELECT id_usuario, login FROM tb_usuarios
                     WHERE login = %s
                     AND senha = %s;
                     """,

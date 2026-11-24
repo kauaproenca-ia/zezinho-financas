@@ -40,8 +40,8 @@ class Despesa:
             cu.execute("""
                         SELECT id_despesa, id_usuario, valor, data_despesa, descricao, id_categoria
                         FROM tb_despesas
-                        WHERE login = %s;
-                        """ [login])
+                        WHERE id_usuario = %s;
+                        """, [login])
             
             despesas = cu.fetchall()
             co.close()
